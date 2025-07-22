@@ -1,3 +1,11 @@
+body {
+  font-family: 'Source Sans Pro';
+}
+
+.btn-loop {
+  transition: color 0.3s;
+}
+
 .btn-loop.active {
   background-color: #3399ff !important;
   color: white !important;
@@ -10,7 +18,7 @@
 
 .volume-container:hover .volume-icon,
 .volume-container.active .volume-icon {
-  color: #fff;
+  color: #3b82f6;
 }
 
 #progressBar {
@@ -98,3 +106,156 @@
   height: 6px;
   border-radius: 4px;
 }
+
+#albumProgress {
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 4px;
+  background: linear-gradient(to right, #3b82f6 0%, #3b82f6 0%, #444 0%, #444 100%);
+  cursor: pointer;
+  outline: none;
+}
+
+#albumProgress::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 14px;
+  width: 14px;
+  background: #3b82f6;
+  border-radius: 50%;
+  margin-top: -4px;
+  cursor: pointer;
+  z-index: 2;
+  position: relative;
+}
+
+#albumProgress::-webkit-slider-runnable-track {
+  background: transparent;
+  height: 6px;
+  border-radius: 4px;
+}
+
+#albumProgress::-moz-range-thumb {
+  height: 14px;
+  width: 14px;
+  background: #3b82f6;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#albumProgress::-moz-range-track {
+  background: transparent;
+  height: 6px;
+  border-radius: 4px;
+}
+
+#persistent-album-bar.hide {
+    transform: translateY(100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+  }
+
+#persistent-album-bar {
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+body.theme-light  {
+  background-color: rgb(246, 246, 246);
+  color: black;
+}
+
+body.theme-light .track {
+  background-color: rgb(255, 255, 255);
+}
+
+body.theme-light .track p {
+  color: black;
+}
+
+body.theme-light header {
+  background-color: rgb(8,116,188);
+  color: white;
+}
+
+body.theme-light .albumlink {
+  background-color: rgb(255, 255, 255);
+  color: black;
+}
+
+body.theme-light .albumtrack {
+  background-color: rgb(232, 232, 232);
+  color: black;
+}
+
+body.theme-light .currenttrack {
+  background-color: rgb(255, 255, 255)
+}
+
+body.theme-light .albumtracktext {
+  color: black;
+}
+
+body.theme-light .playingtext {
+  color: rgb(16, 113, 239);
+}
+
+body.theme-light #login-button {
+  background-color: rgb(124, 136, 156)
+}
+
+body.theme-dark #theme-select {
+  color: black;
+}
+
+body.theme-light #theme-select {
+  color: black;
+}
+
+body.theme-light .login-btn {
+  background-color: rgb(5, 150, 105);
+  color: white;
+}
+
+body.theme-light .login-btn:hover {
+  background-color: rgb(8, 177, 124);
+}
+
+#login-username, #login-password {
+  color: black;
+}
+
+body.theme-light #persistent-album-bar {
+  background-color: rgb(240, 240, 240);
+  color: black;
+}
+
+body.theme-light #persistent-album-bar button,
+body.theme-light #albumTimestamp,
+body.theme-light .volume-icon,
+body.theme-light #bar-track-title {
+  color: black;
+}
+
+body.theme-light .volume-icon.active,
+body.theme-light .volume-icon:hover {
+  color: rgb(59, 130, 246);
+}
+
+body.theme-light #bar-track-meta {
+  color: rgb(39, 39, 39);
+}
+
+body.theme-light .track {
+  background-color: rgb(255, 255, 255);
+  color: black;
+}
+
+body.theme-light .timestamp {
+  color: black;
+}
+
+body.theme-light .text-green-400 { color: #059669 !important; }
+body.theme-light .text-blue-400 { color: #2563eb !important; }
+body.theme-light .text-gray-400 { color: #4b5563 !important; }

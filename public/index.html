@@ -6,7 +6,9 @@
   <title>HackTunes</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link href="/style.css" rel="stylesheet">
+  <script type="module" src="/themes.js"></script>
   <script src="/script.js" defer></script>
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
 </head>
 <body class="bg-gray-900 text-white">
   <header class="p-6 bg-gray-800 shadow-md flex items-center justify-between">
@@ -15,6 +17,13 @@
     <input type="text" id="searchInput" placeholder="Search tracks or artists" />
     <button type="submit">Search</button>
   </form> -->
+  <label for="theme-select">Theme:
+    <select id="theme-select">
+            <option value="dark" class="text-black">Dark</option>
+            <option value="light" class="text-black">Light</option>
+            <option value="blue" class="text-black">Blue</option>
+    </select>
+  </label>
 
   <div class="flex items-center space-x-4">
     <a href="/add-song.html" id="add-song-link" style="display:none" class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded">
@@ -24,7 +33,7 @@
     <div id="login-box" style="display:none;" class="flex space-x-2 items-center">
       <input id="login-username" placeholder="Username" class="px-2 py-1 rounded" />
       <input id="login-password" type="password" placeholder="Password" class="px-2 py-1 rounded" />
-      <button onclick="submitLogin()" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded">Log In</button>
+      <button onclick="submitLogin()" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded login-btn">Log In</button>
     </div>
 
     <button id="login-button" onclick="showLogin()" class="bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded">Log In as Admin</button>
@@ -37,14 +46,14 @@
 
       <div id="searchResults" class="hidden"></div>
       
-        <h2 class="text-2xl mb-4 font-semibold">🎧 Newly Added</h2>
+        <h2 class="text-2xl mb-4 font-semibold">Newly Added</h2>
         <div id="new-tracks" class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 <!-- JS will insert tracks here -->
         </div>
         </section>
 
         <section>
-        <h2 class="text-2xl mb-4 font-semibold">🔥 Popular Tracks</h2>
+        <h2 class="text-2xl mb-4 font-semibold">Popular Tracks</h2>
         <div id="popular-tracks" class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 <!-- JS will insert tracks here -->
         </div>
@@ -55,3 +64,4 @@
   </main>
 </body>
 </html>
+

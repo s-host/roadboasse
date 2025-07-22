@@ -10,14 +10,14 @@ const storage = multer.diskStorage({
     cb(null, path.join(__dirname, "audio"));
   },
   filename: (req, file, cb) => {
-    // Save original filename, but you can customize to avoid conflicts
+    // save og filename
     cb(null, file.originalname);
   }
 });
 
 const upload = multer({ storage });
 
-// Middleware
+// middleware
 app.use(express.json());
 
 app.use(express.static(path.join(__dirname, "public")));
@@ -39,7 +39,7 @@ function ensureAdmin(req, res, next) {
   next();
 }
 
-// Load existing track data
+// load existing track data
 const tracksFile = path.join(__dirname, "data", "tracks.json");
 let tracks = [];
 
@@ -47,7 +47,7 @@ if (fs.existsSync(tracksFile)) {
   tracks = JSON.parse(fs.readFileSync(tracksFile, "utf-8"));
 }
 
-// Routes
+// routes
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
@@ -132,18 +132,18 @@ app.delete('/api/tracks/:artistSlug/:songSlug', (req, res) => {
   });
 });
 
-// Start server
+// start server
 app.listen(PORT, () => {
   console.log(`✅ Server running at http://localhost:${PORT}`);
 });
 
-// Hardcoded login (can be expanded to real users or DB)
+// hardcoded login (can be expanded to real users or DB)
 const ADMIN_CREDENTIALS = {
   username: "admin",
   password: "iHATEtomatoes1$ff"
 };
 
-// Login endpoint
+// login endpoint
 app.post("/api/login", (req, res) => {
   const { username, password } = req.body;
   if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
@@ -154,14 +154,14 @@ app.post("/api/login", (req, res) => {
   }
 });
 
-// Logout
+// logout
 app.post("/api/logout", (req, res) => {
   req.session.destroy(() => {
     res.json({ success: true });
   });
 });
 
-// Check login status
+// check login status
 app.get("/api/is-admin", (req, res) => {
   res.json({ isAdmin: !!req.session.isAdmin });
 });
@@ -171,14 +171,14 @@ app.post("/api/upload-song", upload.single("audioFile"), (req, res) => {
     return res.status(403).send("Not authorized");
   }
 
-  const { title, artist, album, cover, category, releaseDate } = req.body;
+  const { title, artist, album, cover, category, releaseDate, albumNumber } = req.body;
   const audioFile = req.file;
 
   if (!title || !artist || !audioFile) {
     return res.status(400).send("Missing required fields or audio file");
   }
 
-  // Create track object
+  // create track object
   const newTrack = {
     title,
     artist,
@@ -188,9 +188,10 @@ app.post("/api/upload-song", upload.single("audioFile"), (req, res) => {
     isNew: category === "isNew",
     isPopular: category === "isPopular",
     createdAt: releaseDate ? new Date(releaseDate).toISOString() : new Date().toISOString(),
+    albumNumber,
   };
 
-  // Add to tracks array & save
+  // add to tracks array & save
   tracks.unshift(newTrack);
   fs.writeFile(tracksFile, JSON.stringify(tracks, null, 2), (err) => {
     if (err) {
@@ -201,7 +202,7 @@ app.post("/api/upload-song", upload.single("audioFile"), (req, res) => {
   });
 });
 
-// ✅ Fix: Route all non-API paths to index.html
+// catch all
 app.get(/^\/(?!api)(?!.*\.\w+).*/, (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });

@@ -5,6 +5,7 @@
   <title>Add New Song - HackTunes</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   <link href="/style.css" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
 </head>
 <body class="bg-gray-900 text-white p-8">
   <h1 class="text-4xl mb-6">Add New Song</h1>
@@ -22,7 +23,8 @@
         <option value="isNew">New</option>
     </select>
     <label for="releaseDate" class="block text-sm font-medium text-gray-300">Release Date</label>
-<input type="date" id="releaseDate" name="releaseDate" required class="mt-1 block w-full bg-gray-700 text-white border border-gray-600 rounded px-3 py-2" />
+  <input type="date" id="releaseDate" name="releaseDate" required class="mt-1 block w-full bg-gray-700 text-white border border-gray-600 rounded px-3 py-2" />
+  <input name="albumNumber" type="number" placeholder="Track Number in Album" class="p-2 rounded text-black" />
     <button type="submit" class="bg-green-600 hover:bg-green-700 py-2 rounded font-bold">Upload & Add Song</button>
   </form>
 
@@ -52,3 +54,4 @@
 
 </body>
 </html>
+
