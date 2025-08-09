@@ -122,11 +122,11 @@ function renderTrackCard(track) {
 }
 
 function updateLoopButtonColor(btn, mode) {
-  btn.classList.remove("text-green-400", "text-blue-400", "text-gray-400");
+  btn.classList.remove("loop1", "loopall", "noloop");
 
-  if (mode === 2) btn.classList.add("text-green-400");
-  else if (mode === 1) btn.classList.add("text-blue-400");
-  else btn.classList.add("text-gray-400");
+  if (mode === 2) btn.classList.add("loop1");
+  else if (mode === 1) btn.classList.add("loopall");
+  else btn.classList.add("noloop");
 }
 
 function renderSong(artistSlug, songSlug) {
@@ -140,10 +140,10 @@ function renderSong(artistSlug, songSlug) {
     <div class="max-w-xl mx-auto bg-gray-800 p-6 rounded-lg shadow-lg space-y-4 track">
       <img src="${track.cover}" alt="${track.album}" class="w-full h-full object-cover rounded"/>
       <h2 class="text-2xl font-bold">${track.title}</h2>
-      <p class="text-gray-400">
+      <p class="text-gray-400 artistPointer">
         by <span class="hover:underline cursor-pointer" onclick="navigateTo('/${slugify(track.artist)}')">${track.artist}</span>
       </p>
-      <p class="italic text-gray-500 hover:underline cursor-pointer" onclick="navigateTo('/album/${slugify(track.album)}')">${track.album}</p>
+      <p class="italic text-gray-500 hover:underline cursor-pointer albumPointer" onclick="navigateTo('/album/${slugify(track.album)}')">${track.album}</p>
 
       <div class="audio-player" style="display:flex; flex-direction:column; gap:12px; margin-top:1rem; color:#eee;">
         <audio id="audio" src="${track.file}"></audio>
@@ -198,6 +198,8 @@ function renderSong(artistSlug, songSlug) {
 
       ${isLoggedIn ? `<button onclick="deleteTrack('${track.artistSlug}', '${track.songSlug}')" class="mt-4 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded">Delete Track</button>` : ''}
     </div>
+
+    <br>
   `;
 
   setupAudioPlayer(track);
@@ -275,8 +277,8 @@ function renderAlbum(albumSlug) {
   app.innerHTML = `
     <div class="max-w-3xl mx-auto space-y-6">
       <h2 class="text-3xl font-bold mb-2">
-        💿 Album: ${albumTitle}
-        <span class="text-sm text-gray-400 block mt-1">
+        ${albumTitle}
+        <span class="text-sm text-gray-400 block mt-1 artistPointer">
           by ${sortedArtists.map(([name]) => `<span class="hover:underline cursor-pointer" onclick="navigateTo('/${slugify(name)}')">${name}</span>`).join(', ')}
         </span>
       </h2>
@@ -470,7 +472,7 @@ function startAlbumAudio() {
     const bar = document.querySelector("#albumProgress");
     if (bar) {
       bar.value = percent;
-      bar.style.background = `linear-gradient(to right, #3b82f6 0%, #3b82f6 ${percent}%, #444 ${percent}%, #444 100%)`;
+      bar.style.background = `linear-gradient(to right, #3b82f6 0%, #3b82f6 ${percent}%, #444 ${percent}%, #444 100%)`; // will add themed bar laterrrr
     }
 
     const timestamp = document.querySelector("#albumTimestamp");
@@ -496,8 +498,8 @@ function renderCurrentAlbumView() {
   app.innerHTML = `
     <div class="max-w-3xl mx-auto space-y-6">
       <h2 class="text-3xl font-bold mb-2">
-        💿 Album: ${albumTitle}
-        <span class="text-sm text-gray-400 block mt-1">
+        ${albumTitle}
+        <span class="text-sm text-gray-400 block mt-1 artistPointer">
           by ${sortedArtists.map(([name]) => `<span class='hover:underline cursor-pointer' onclick="navigateTo('/${slugify(name)}')">${name}</span>`).join(', ')}
         </span>
       </h2>
@@ -516,6 +518,8 @@ function renderCurrentAlbumView() {
         `).join('')}
       </div>
     </div>
+    <br>
+    <br>
 
   `;
 }
@@ -561,7 +565,7 @@ function updatePersistentPlayer() {
       </div>
       <div class="flex items-center gap-4">
         <span id="albumTimestamp" class="text-gray-400 text-sm">0:00 / --:--</span>
-        <input id="albumProgress" type="range" min="0" max="100" step="0.1" value="0" style="appearance: none; width: 200px; height: 6px; border-radius: 4px; background: linear-gradient(to right, #3b82f6 0%, #3b82f6 0%, #444 0%, #444 100%); cursor: pointer; outline: none;" />
+        <input id="albumProgress" type="range" min="0" max="100" step="0.1" value="0" style="appearance: none; width: 200px; height: 6px; border-radius: 4px; cursor: pointer; outline: none;" />
         <div class="relative group volume-container">
           <svg class="volume-icon text-white cursor-pointer" id="volumeIcon" width="24" height="24" viewBox="0 0 24 24" 
                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -587,14 +591,14 @@ function updatePersistentPlayer() {
     bar = container;
 
     const loopBtn = bar.querySelector("#persistentLoopBtn");
-    loopBtn.classList.remove("text-green-400", "text-blue-400", "text-gray-400");
+    loopBtn.classList.remove("loopall", "loop1", "noloop");
 
     if (albumPlayer.loopMode === 2) {
-      loopBtn.classList.add("text-green-400");
+      loopBtn.classList.add("loop1");
     } else if (albumPlayer.loopMode === 1) {
-      loopBtn.classList.add("text-blue-400");
+      loopBtn.classList.add("loopall");
     } else {
-      loopBtn.classList.add("text-gray-400");
+      loopBtn.classList.add("noloop");
     }
 
 
@@ -674,8 +678,8 @@ function updatePersistentPlayer() {
     albumEl.textContent = current.album;
     albumEl.className = "hover:underline cursor-pointer";
     albumEl.onclick = () => {
+      history.pushState({}, "", '/album/' + slugify(current.album));
       renderCurrentAlbumView();
-      // navigateTo('/album/' + slugify(current.album))
     };
 
     const separator = document.createTextNode(" • ");

@@ -1,12 +1,89 @@
 [
   {
+    "title": "music sounds WORSE with U",
+    "artist": "xaev",
+    "album": "berdlycore chapter zero",
+    "cover": "https://f4.bcbits.com/img/a3037218448_16.jpg",
+    "file": "/audio/music sounds WORSE with U.mp3",
+    "isNew": false,
+    "isPopular": false,
+    "createdAt": "2022-07-23T00:00:00.000Z",
+    "albumNumber": "11"
+  },
+  {
+    "title": "...during pride month?",
+    "artist": "leroy",
+    "album": "Dariacore 2: Enter Here, Hell to the Left",
+    "cover": "https://i.scdn.co/image/ab67616d0000b273c03551e8cb72fe5440e20df3",
+    "file": "/audio/Leroy .During Pride Month.mp3",
+    "isNew": false,
+    "isPopular": true,
+    "createdAt": "2021-09-07T00:00:00.000Z",
+    "albumNumber": "3"
+  },
+  {
+    "title": "giratina anthem",
+    "artist": "gingus",
+    "album": "giratinightcore: silver",
+    "cover": "https://i.scdn.co/image/ab67616d0000b273ae13ed27a1c8bf09397aaff9",
+    "file": "/audio/giratina anthem.mp3",
+    "isNew": true,
+    "isPopular": true,
+    "createdAt": "2022-01-15T00:00:00.000Z",
+    "albumNumber": "7"
+  },
+  {
+    "title": "2008",
+    "artist": "gingus",
+    "album": "giratinightcore: yellow",
+    "cover": "https://i.scdn.co/image/ab67616d0000b2736a845595b031f982fba67878",
+    "file": "/audio/2008.mp3",
+    "isNew": false,
+    "isPopular": false,
+    "createdAt": "2021-09-15T00:00:00.000Z",
+    "albumNumber": "2"
+  },
+  {
+    "title": "hahaha DIE",
+    "artist": "gingus",
+    "album": "giratinightcore: yellow",
+    "cover": "https://i.scdn.co/image/ab67616d0000b2736a845595b031f982fba67878",
+    "file": "/audio/hahaha DIE.mp3",
+    "isNew": false,
+    "isPopular": false,
+    "createdAt": "2021-09-15T00:00:00.000Z",
+    "albumNumber": "6"
+  },
+  {
+    "title": "newmoon island",
+    "artist": "gingus",
+    "album": "giratinightcore: yellow",
+    "cover": "https://i.scdn.co/image/ab67616d0000b2736a845595b031f982fba67878",
+    "file": "/audio/newmoon island.mp3",
+    "isNew": false,
+    "isPopular": false,
+    "createdAt": "2021-09-15T00:00:00.000Z",
+    "albumNumber": "4"
+  },
+  {
+    "title": "snowpoint city",
+    "artist": "gingus",
+    "album": "giratinightcore: yellow",
+    "cover": "https://i.scdn.co/image/ab67616d0000b2736a845595b031f982fba67878",
+    "file": "/audio/ðððððð snowpoint city.mp3",
+    "isNew": false,
+    "isPopular": false,
+    "createdAt": "2021-09-15T00:00:00.000Z",
+    "albumNumber": "1"
+  },
+  {
     "title": "BONErr",
     "artist": "gingus",
     "album": "giratinightcore: silver",
     "cover": "https://i.scdn.co/image/ab67616d0000b273ae13ed27a1c8bf09397aaff9",
     "file": "/audio/BONErr.mp3",
     "isNew": false,
-    "isPopular": true,
+    "isPopular": false,
     "createdAt": "2022-01-15T00:00:00.000Z",
     "albumNumber": "2"
   },
@@ -52,7 +129,7 @@
     "isNew": false,
     "isPopular": false,
     "createdAt": "2022-05-05T00:00:00.000Z",
-    "albumNumber": "2"
+    "albumNumber": "4"
   },
   {
     "title": "ok google what the bird doin",
